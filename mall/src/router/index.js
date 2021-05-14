@@ -74,7 +74,7 @@ VueRouter.prototype.push = function push (location, onResolve, onReject) {
 
 router.beforeEach((to,from,next)=>{
   console.log(to)
-  if(to.path === '/me'){
+  if(to.path === '/me' && to.meta === false){
     next('/login')
   }else{
     next()
