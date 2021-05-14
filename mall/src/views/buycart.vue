@@ -120,6 +120,9 @@ export default {
 
             }
         }
+        .list {
+            background-color: #fff;
+        }
         .cartItem{
             padding: 0 5px;
             display: flex;

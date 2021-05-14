@@ -74,6 +74,9 @@ export default {
 
 <style lang="less">
     #categoryList{
+        .van-tabs__content {
+            background-color: #fff;
+        }
         .van-ellipsis{
             width: 100%;
             font-size: 14px;
@@ -86,6 +89,9 @@ export default {
         }
         .price{
             color:red;
+        }
+        .van-tab__pane {
+            text-align: center;
         }
     }
 </style>

@@ -5,7 +5,6 @@ import category from '@/views/category'
 import categorylist from '@/views/categorylist'
 import product from '@/views/product'
 import buycart from '@/views/buycart'
-import subject from '@/views/subject'
 import me from '@/views/me'
 
 Vue.use(VueRouter)
@@ -48,14 +47,15 @@ const routes = [
     component:buycart
   },
   {
-    path:"/subject",
-    name:"subject",
-    component:subject
-  },
-  {
     path:"/me",
     name:'me',
     component:me
+  },
+  {
+    path:'/login',
+    name:'login',
+    component:()=>import('../views/login.vue'),
+    meta:{isLogin:false}
   }
 ]
 
@@ -65,4 +65,20 @@ const router = new VueRouter({
   routes
 })
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
+router.beforeEach((to,from,next)=>{
+  console.log(to)
+  if(to.path === '/me'){
+    next('/login')
+  }else{
+    next()
+  }
+})
+  
 export default router
